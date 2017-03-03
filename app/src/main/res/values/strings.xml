@@ -4,5 +4,7 @@
     <string name="loading_status">Show Loading Status</string>
     <string name="empty_status">Show Empty Status</string>
     <string name="retry_status">Show Retry Status</string>
+    <string name="change_status_bar_mode">Change Status Bar Mode</string>
+    <string name="restore_status_bar_mode">Restore Status Bar Mode</string>
 
 </resources>

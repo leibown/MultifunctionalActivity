@@ -54,7 +54,12 @@ public class MainActivity extends BaseActivity {
                 showEmpty();
                 break;
             case R.id.btn_3:
-//                showRetry();
+                showRetry();
+                break;
+            case R.id.btn_4:
+                setStatusBarDarkMode();
+                break;
+            case R.id.btn_5:
                 restoreStatusBarMode();
                 break;
         }

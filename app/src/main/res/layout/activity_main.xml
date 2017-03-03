@@ -198,5 +198,23 @@
             android:onClick="doBtnClick"
             android:text="@string/retry_status"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="doBtnClick"
+            android:text="@string/change_status_bar_mode"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="doBtnClick"
+            android:text="@string/restore_status_bar_mode"
+            android:textAllCaps="false" />
+
+
     </LinearLayout>
 </ScrollView>

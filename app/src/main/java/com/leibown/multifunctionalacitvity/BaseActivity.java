@@ -21,7 +21,6 @@ public abstract class BaseActivity extends MultifunctionalActivity {
         setEmptyText("暂时没有数据返回");
         setLoadingText("正在玩命加载中");
         setReTryText("加载失败请稍后再试");
-        setStatusBarDarkMode();
         setStatusImageViewImageResource(R.drawable.android);
 
         View view = View.inflate(this, R.layout.layout_actionbar, null);
