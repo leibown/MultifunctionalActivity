@@ -36,10 +36,14 @@ allprojects {
 
 <div width=100%>
 
-<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif" width="300" float="left"></img>
+<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif" width="250" float="left"></img>
 
-<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_pic_statusbar_bg.gif" width="300" float="left"></img>
+<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_pic_statusbar_bg.gif" width="250" float="left"></img>
 
 </div>
+
+修改**状态栏图**标和**文字**的颜色：
+
+<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_mode_statusbar.gif" width="250"></img>
 
 </div>
