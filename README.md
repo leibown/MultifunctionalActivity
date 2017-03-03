@@ -29,3 +29,5 @@ allprojects {
 	        compile 'com.github.leibown:MultifunctionalActivity:1.0'
 	}
 ```
+
+效果图：![](https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif)![](https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_pic_statusbar_bg.gif)
