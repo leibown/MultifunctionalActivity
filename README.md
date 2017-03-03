@@ -161,6 +161,11 @@ allprojects {
       public void bindViews(Bundle savedInstanceState) {
           super.bindViews(savedInstanceState);
       }
+    
+      @Override
+      public void reTry() {
+          Toast.makeText(this, "点击了重试", Toast.LENGTH_SHORT).show();
+      }
   }
   ```
 
@@ -203,7 +208,7 @@ void showRetry();
 
 > 切换状态的使用场景如下图所示（本来想用文字总结的，发现本人表达能力确实有点差）：![](https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/status_img.png)
 >
-> 里面的retry()方法需要你在Activity里面重写，那样点击重试时就会执行这个reTry()方法。
+> 里面的retry()方法需要你在Activity里面重写，那样点击重试时就会执行这个reTry()方法，就像上面代码中的MainActivity一样。
 
 
 
