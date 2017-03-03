@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +33,6 @@ public abstract class MultifunctionalActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("leibown", "进入BaseActivity11111111111111111111");
 
         LayoutInflater inflater = getLayoutInflater();
         LinearLayout containerView = (LinearLayout) inflater.inflate(R.layout.activity_base, null);
@@ -71,10 +69,8 @@ public abstract class MultifunctionalActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
                 decorView.setSystemUiVisibility(option);
                 getWindow().setStatusBarColor(Color.TRANSPARENT);
-                Log.e("leibown", "进入BaseActivity2222222222222222222222");
             } else {
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-                Log.e("leibown", "进入BaseActivity3333333333333333333333");
             }
             //如果Android版本大于4.4，说明状态栏就可以被透明，我们自己的布局就可以放到状态栏之下
             //我们把自定义的ActionBar的高度增高
@@ -89,24 +85,49 @@ public abstract class MultifunctionalActivity extends Activity {
         bindViews(savedInstanceState);
     }
 
-    //是否需要装载能显示各种状态的ViewGroup
+    /**
+     * 是否需要装载能显示各种状态的ViewGroup
+     */
     public abstract boolean isNeedStatusView();
 
+    /**
+     * 获取Activity布局文件Id
+     *
+     * @return
+     */
     public abstract int getResId();
 
-    //子类初始化view的方法
+    /**
+     * 子类初始化view的方法
+     *
+     * @param savedInstanceState
+     */
     public abstract void bindViews(Bundle savedInstanceState);
 
-
+    /**
+     * 设置ActionBar，传入ActionBar布局
+     *
+     * @param actionBar ActionBar布局
+     */
     public void setActionBar(View actionBar) {
         mLlTittleBar.setVisibility(View.VISIBLE);
         mLlTittleBar.addView(actionBar);
     }
 
+    /**
+     * 设置ActionBar的背景颜色
+     *
+     * @param color 颜色值
+     */
     public void setActionBarBackgroudColor(int color) {
         mLlTittleBar.setBackgroundColor(color);
     }
 
+    /**
+     * 设置ActionBar的背景图片
+     *
+     * @param imgRes 图片资源Id
+     */
     public void setActionBarBackgroudResource(int imgRes) {
         mLlTittleBar.setBackgroundResource(imgRes);
     }
@@ -255,7 +276,7 @@ public abstract class MultifunctionalActivity extends Activity {
     }
 
     /**
-     * 设置状态栏字体和图标为白色
+     * 设置状态栏字体和图标为黑色
      * Android版本在6.0以上时可以调用此方法来改变状态栏字体图标颜色
      */
     protected void setStatusBarDarkMode() {
