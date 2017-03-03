@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Library</string>
+
+
+    <string name="loading_content">正在加载</string>
+    <string name="empty_content">没有数据返回</string>
+    <string name="retry_content">加载失败，点击重试</string>
+
+</resources>

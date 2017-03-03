@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFAFA"
+                android:gravity="center"
+                android:onClick="doClick"
+                android:padding="10dp"
+                android:text="#FFFAFA" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#BBFFFF"
+                android:gravity="center"
+                android:onClick="doClick"
+                android:padding="10dp"
+                android:text="#BBFFFF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#DCDCDC"
+                android:gravity="center"
+                android:onClick="doClick"
+                android:padding="10dp"
+                android:text="#DCDCDC" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#668B8B"
+                android:gravity="center"
+                android:onClick="doClick"
+                android:padding="10dp"
+                android:text="#668B8B" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFACD"
+                android:gravity="center"
+                android:onClick="doClick"
+                android:padding="10dp"
+                android:text="#FFFACD" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFF5EE"
+                android:gravity="center"
+                android:onClick="doClick"
+                android:padding="10dp"
+                android:text="#FFF5EE" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#696969"
+                android:gravity="center"
+                android:onClick="doClick"
+                android:padding="10dp"
+                android:text="#696969" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#54FF9F"
+                android:gravity="center"
+                android:onClick="doClick"
+                android:padding="10dp"
+                android:text="#54FF9F" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#E0FFFF"
+                android:gravity="center"
+                android:onClick="doClick"
+                android:padding="10dp"
+                android:text="#E0FFFF" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#CDC673"
+                android:gravity="center"
+                android:onClick="doClick"
+                android:padding="10dp"
+                android:text="#CDC673" />
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_1"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_nav"
+            android:onClick="doImgClick" />
+
+        <ImageView
+            android:id="@+id/iv_2"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/a"
+            android:onClick="doImgClick" />
+
+        <ImageView
+            android:id="@+id/iv_3"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/b"
+            android:onClick="doImgClick" />
+
+
+        <Button
+            android:id="@+id/btn_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="doBtnClick"
+            android:text="显示加载" />
+
+        <Button
+            android:id="@+id/btn_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="doBtnClick"
+            android:text="显示没得数据" />
+
+        <Button
+            android:id="@+id/btn_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="doBtnClick"
+            android:text="显示加载错误" />
+    </LinearLayout>
+</ScrollView>
