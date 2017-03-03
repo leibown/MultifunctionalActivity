@@ -32,6 +32,6 @@ allprojects {
 
 效果图：
 
-<div width=100%><img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif" width="300px" float=left /> 
+<figure class="half"><img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif" width="300px" float=left /> 
 
-<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif" width="300px" float=left/></div>
+<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif" width="300px" float=left/></figure>
