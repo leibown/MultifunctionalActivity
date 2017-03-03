@@ -32,7 +32,9 @@ allprojects {
 
 ## 效果图
 
-修改头部**背景颜色**或**背景图片**:<div width=100%>
+修改头部**背景颜色**或**背景图片**:
+
+<div width=100%>
 
 <img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif" width="250" float="left"></img>
 
@@ -40,8 +42,12 @@ allprojects {
 
 </div>
 
-修改**状态栏图**标和**文字**的颜色：<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_mode_statusbar.gif" width="250"></img>
+修改**状态栏图**标和**文字**的颜色：
 
-变换各种加载状态：<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/show_status.gif" width="250"></img>
+<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_mode_statusbar.gif" width="250"></img>
+
+变换各种加载状态：
+
+<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/show_status.gif" width="250"></img>
 
 </div>
