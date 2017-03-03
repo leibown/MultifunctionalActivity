@@ -29,4 +29,3 @@ allprojects {
 	        compile 'com.github.leibown:MultifunctionalActivity:1.0'
 	}
 ```
-
