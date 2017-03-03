@@ -30,8 +30,18 @@ allprojects {
 	}
 ```
 
-效果图：
+## 效果图
 
-<figure class="half"><img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif" width="300px"/> 
+修改头部**背景颜色**或**背景图片**:
 
-<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif" width="300px"/></figure>
+<div width=100%>
+
+<div gravity="center">
+
+<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif" width="300" float="left"></img>
+
+<img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_pic_statusbar_bg.gif" width="300" float="left"></img>
+
+</div>
+
+</div>
