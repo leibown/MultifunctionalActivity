@@ -36,7 +36,7 @@ allprojects {
 
 <div width=100%>
 
-<div gravity="center">
+<div style="align: center">
 
 <img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif" width="300" float="left"></img>
 
