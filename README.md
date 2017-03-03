@@ -160,6 +160,7 @@ allprojects {
       @Override
       public void bindViews(Bundle savedInstanceState) {
           super.bindViews(savedInstanceState);
+        	showActionBar();
       }
     
       @Override
@@ -174,6 +175,9 @@ allprojects {
 设置相关：
 
 ```java
+//设置显示ActionBar
+void showActionBar();
+
 //设置没有数据时的提示文字
 void setEmptyText(String emptyText);
 
@@ -191,6 +195,12 @@ void setActionBarBackgroudColor(int color);
 
 //设置ActionBar的背景图片
 void setActionBarBackgroudResource(int resId);
+
+//设置状态栏图标和文字为黑色(Android 6.0以上)
+void setStatusBarDarkMode();
+
+//恢复状态栏图标和文字(Android 6.0以上)
+void restoreStatusBarMode();
 ```
 
 切换状态相关：

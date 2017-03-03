@@ -110,8 +110,14 @@ public abstract class MultifunctionalActivity extends Activity {
      * @param actionBar ActionBar布局
      */
     public void setActionBar(View actionBar) {
-        mLlTittleBar.setVisibility(View.VISIBLE);
         mLlTittleBar.addView(actionBar);
+    }
+
+    /**
+     * 设置显示ActionBar
+     */
+    public void showActionBar() {
+        mLlTittleBar.setVisibility(View.VISIBLE);
     }
 
     /**

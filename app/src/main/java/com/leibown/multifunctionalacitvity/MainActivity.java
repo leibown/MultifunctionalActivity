@@ -17,6 +17,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void bindViews(Bundle savedInstanceState) {
         super.bindViews(savedInstanceState);
+        showActionBar();
     }
 
     @Override
