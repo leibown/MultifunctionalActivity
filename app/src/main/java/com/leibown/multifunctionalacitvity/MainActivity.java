@@ -2,18 +2,13 @@ package com.leibown.multifunctionalacitvity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.leibown.library.MultifunctionalActivity;
+public class MainActivity extends BaseActivity {
 
-public class MainActivity extends MultifunctionalActivity {
-
-    @Override
-    public boolean isNeedStatusView() {
-        return true;
-    }
 
     @Override
     public int getResId() {
@@ -22,16 +17,7 @@ public class MainActivity extends MultifunctionalActivity {
 
     @Override
     public void bindViews(Bundle savedInstanceState) {
-//        setEmptyText("没得东西了，滚~");
-//        showEmpty();
-        View view = View.inflate(this, R.layout.layout_actionbar, null);
-        setActionBar(view);
-        view.findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showContent();
-            }
-        });
+        super.bindViews(savedInstanceState);
     }
 
     @Override
@@ -40,6 +26,7 @@ public class MainActivity extends MultifunctionalActivity {
     }
 
     public void doClick(View view) {
+        Log.e("leibown", "点击了色块");
         TextView tv = (TextView) view;
         setActionBarBackgroudColor(Color.parseColor(tv.getText().toString()));
     }
@@ -67,7 +54,8 @@ public class MainActivity extends MultifunctionalActivity {
                 showEmpty();
                 break;
             case R.id.btn_3:
-                showRetry();
+//                showRetry();
+                restoreStatusBarMode();
                 break;
         }
     }

@@ -107,7 +107,7 @@ public abstract class MultifunctionalActivity extends Activity {
         mLlTittleBar.setBackgroundColor(color);
     }
 
-    public void setActionBarBackgroudResource(int imgRes){
+    public void setActionBarBackgroudResource(int imgRes) {
         mLlTittleBar.setBackgroundResource(imgRes);
     }
 
@@ -166,6 +166,13 @@ public abstract class MultifunctionalActivity extends Activity {
             return null;
         }
         return (ImageView) mStatusContainer.findViewById(R.id.iv_status_img);
+    }
+
+    /**
+     * 设置loading,retry,empty状态下界面中的ImageView显示的图片
+     */
+    protected void setStatusImageViewImageResource(int resId) {
+        ((ImageView) mStatusContainer.findViewById(R.id.iv_status_img)).setImageResource(resId);
     }
 
     private String loadingText = "", emptyText = "", reTryText = "";
@@ -243,7 +250,27 @@ public abstract class MultifunctionalActivity extends Activity {
         }
     }
 
-    public Context getContext() {
+    protected Context getContext() {
         return this;
     }
+
+    /**
+     * 设置状态栏字体和图标为白色
+     * Android版本在6.0以上时可以调用此方法来改变状态栏字体图标颜色
+     */
+    protected void setStatusBarDarkMode() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+    }
+
+    /**
+     * 恢复状态栏字体和图标的颜色(可以理解为把状态栏字体图标重新设置为白色)
+     */
+    protected void restoreStatusBarMode() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
+    }
+
 }

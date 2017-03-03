@@ -21,6 +21,7 @@
                 android:background="#FFFAFA"
                 android:gravity="center"
                 android:onClick="doClick"
+                android:clickable="true"
                 android:padding="10dp"
                 android:text="#FFFAFA" />
 
@@ -31,6 +32,7 @@
                 android:background="#BBFFFF"
                 android:gravity="center"
                 android:onClick="doClick"
+                android:clickable="true"
                 android:padding="10dp"
                 android:text="#BBFFFF" />
         </LinearLayout>
@@ -47,6 +49,7 @@
                 android:background="#DCDCDC"
                 android:gravity="center"
                 android:onClick="doClick"
+                android:clickable="true"
                 android:padding="10dp"
                 android:text="#DCDCDC" />
 
@@ -57,6 +60,7 @@
                 android:background="#668B8B"
                 android:gravity="center"
                 android:onClick="doClick"
+                android:clickable="true"
                 android:padding="10dp"
                 android:text="#668B8B" />
         </LinearLayout>
@@ -72,6 +76,7 @@
                 android:layout_weight="1"
                 android:background="#FFFACD"
                 android:gravity="center"
+                android:clickable="true"
                 android:onClick="doClick"
                 android:padding="10dp"
                 android:text="#FFFACD" />
@@ -83,6 +88,7 @@
                 android:background="#FFF5EE"
                 android:gravity="center"
                 android:onClick="doClick"
+                android:clickable="true"
                 android:padding="10dp"
                 android:text="#FFF5EE" />
         </LinearLayout>
@@ -99,6 +105,7 @@
                 android:background="#696969"
                 android:gravity="center"
                 android:onClick="doClick"
+                android:clickable="true"
                 android:padding="10dp"
                 android:text="#696969" />
 
@@ -108,6 +115,7 @@
                 android:layout_weight="1"
                 android:background="#54FF9F"
                 android:gravity="center"
+                android:clickable="true"
                 android:onClick="doClick"
                 android:padding="10dp"
                 android:text="#54FF9F" />
@@ -122,6 +130,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="true"
                 android:background="#E0FFFF"
                 android:gravity="center"
                 android:onClick="doClick"
@@ -135,6 +144,7 @@
                 android:background="#CDC673"
                 android:gravity="center"
                 android:onClick="doClick"
+                android:clickable="true"
                 android:padding="10dp"
                 android:text="#CDC673" />
         </LinearLayout>
@@ -170,20 +180,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="doBtnClick"
-            android:text="显示加载" />
+            android:text="@string/loading_status"
+            android:textAllCaps="false" />
 
         <Button
             android:id="@+id/btn_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="doBtnClick"
-            android:text="显示没得数据" />
+            android:text="@string/empty_status"
+            android:textAllCaps="false" />
 
         <Button
             android:id="@+id/btn_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="doBtnClick"
-            android:text="显示加载错误" />
+            android:text="@string/retry_status"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

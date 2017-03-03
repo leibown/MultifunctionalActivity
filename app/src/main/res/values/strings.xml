@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MultifunctionalAcitvity</string>
+
+    <string name="loading_status">Show Loading Status</string>
+    <string name="empty_status">Show Empty Status</string>
+    <string name="retry_status">Show Retry Status</string>
+
 </resources>
