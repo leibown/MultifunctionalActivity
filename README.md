@@ -36,8 +36,6 @@ allprojects {
 
 <div width=100%>
 
-<div style="align: center">
-
 <img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_color_statusbar_bg.gif" width="300" float="left"></img>
 
 <img src="https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/change_pic_statusbar_bg.gif" width="300" float="left"></img>
