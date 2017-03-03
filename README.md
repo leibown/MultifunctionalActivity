@@ -201,7 +201,7 @@ void showEmpty();
 void showRetry();
 ```
 
-> 这几个方法的使用场景为从网络中，加载数据showLoading()-->加载成功showContent()
+> 切换状态的使用场景如下图所示（本来想用文字总结的，发现本人表达能力确实有点差）：![](https://raw.githubusercontent.com/leibown/MultifunctionalActivity/master/img/status_img.png)
 
 
 
