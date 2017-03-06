@@ -1,10 +1,11 @@
 package com.leibown.library;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.leibown.library.peimission.PermissionListener;
+import com.leibown.library.peimission.PermissionManager;
 import com.leibown.library.utils.DisplayUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class MultifunctionalActivity extends Activity {
 
@@ -154,6 +160,9 @@ public abstract class MultifunctionalActivity extends Activity {
         if (isNeedStatusView()) {
             mStatusContainer.removeAllViews();
             mStatusContainer.addView(view);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.addRule(RelativeLayout.CENTER_IN_PARENT);
+            view.setLayoutParams(params);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -172,16 +181,8 @@ public abstract class MultifunctionalActivity extends Activity {
      */
     protected void setStatusView(View view, int textViewResId) {
         if (isNeedStatusView()) {
-            mStatusContainer.removeAllViews();
-            mStatusContainer.addView(view);
+            setStatusView(view);
             statusTextView = (TextView) mStatusContainer.findViewById(textViewResId);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (isShowReTryView)
-                        reTry();
-                }
-            });
         }
     }
 
@@ -277,10 +278,6 @@ public abstract class MultifunctionalActivity extends Activity {
         }
     }
 
-    protected Context getContext() {
-        return this;
-    }
-
     /**
      * 设置状态栏字体和图标为黑色
      * Android版本在6.0以上时可以调用此方法来改变状态栏字体图标颜色
@@ -300,4 +297,51 @@ public abstract class MultifunctionalActivity extends Activity {
         }
     }
 
+
+    private int PERMISSION_REQUEST_CODE = 2102;
+    private PermissionListener mPermissionListener;
+
+    /**
+     * 检查是否缺少权限
+     *
+     * @param listener
+     * @param permissions        选线字符串数组
+     */
+    protected void checkPermissions(PermissionListener listener, String... permissions) {
+        this.mPermissionListener = listener;
+        PermissionManager.checkPermission(this, permissions, PERMISSION_REQUEST_CODE, mPermissionListener);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        String[] deniedPermissions = hasAllPermissionsGranted(permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_CODE && deniedPermissions == null) {
+            mPermissionListener.requestPermissionSuccess();
+        } else {
+            mPermissionListener.requestPermissionFail(deniedPermissions);
+        }
+    }
+
+    /**
+     * 是否所有权限已经获取到
+     *
+     * @param grantResults
+     * @return
+     */
+    private String[] hasAllPermissionsGranted(@NonNull String[] permissions, @NonNull int[] grantResults) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < grantResults.length; i++) {
+            if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                list.add(i);
+            }
+        }
+        if (list.size() == 0)
+            return null;
+        String[] deniedPermissions = new String[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            deniedPermissions[i] = permissions[list.get(i)];
+        }
+        return deniedPermissions;
+    }
 }

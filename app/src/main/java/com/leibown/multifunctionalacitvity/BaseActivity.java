@@ -33,7 +33,11 @@ public abstract class BaseActivity extends MultifunctionalActivity {
         setReTryText("加载失败请稍后再试");
 
         //设置各种状态时中间显示的图片
-        setStatusImageViewImageResource(R.drawable.android);
+//        setStatusImageViewImageResource(R.drawable.android);
+
+        View statusView = View.inflate(this, R.layout.layout_status, null);
+        //设置各种状态时的View
+        setStatusView(statusView, R.id.tv_status_content);
 
 
         View view = View.inflate(this, R.layout.layout_actionbar, null);

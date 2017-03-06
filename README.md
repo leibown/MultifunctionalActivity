@@ -107,18 +107,23 @@ allprojects {
           setReTryText("加载失败请稍后再试");
 
           //设置各种状态时中间显示的图片
-          setStatusImageViewImageResource(R.drawable.android);
-        View view = View.inflate(this, R.layout.layout_actionbar, null);
-        //设置ActionBar，传入ActionBar布局
-        setActionBar(view);
-        view.findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
+          //setStatusImageViewImageResource(R.drawable.android);
+        
+        	View statusView = View.inflate(this, R.layout.layout_status, null);
+          //设置各种状态时的View
+          setStatusView(statusView, R.id.tv_status_content);
+        
+        	View view = View.inflate(this, R.layout.layout_actionbar, null);
+       	//设置ActionBar，传入ActionBar布局
+       	setActionBar(view);
+        	view.findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showContent();
-            }
-        });
-    }
-      }
+            	}
+        	});
+    	}
+  }
   ```
 
 
@@ -196,6 +201,18 @@ void restoreStatusBarMode();
 切换状态相关：
 
 ```java
+//自定义Loading,ReTry,Empty这种状态时显示的View
+void setStatusView(View view);
+
+/**
+  * 自定义Loading,ReTry,Empty这种状态时显示的View
+  *
+  * @param view          能装各种状态的View
+  * @param textViewResId 来标识各种状态的TextView
+  */
+void setStatusView(View view, int textViewResId);
+
+
 //设置没有数据时的提示文字
 void setEmptyText(String emptyText);
 

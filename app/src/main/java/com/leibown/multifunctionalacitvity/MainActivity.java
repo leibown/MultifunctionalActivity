@@ -1,10 +1,13 @@
 package com.leibown.multifunctionalacitvity;
 
+import android.Manifest;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.leibown.library.peimission.PermissionListener;
 
 public class MainActivity extends BaseActivity {
 
@@ -17,7 +20,21 @@ public class MainActivity extends BaseActivity {
     @Override
     public void bindViews(Bundle savedInstanceState) {
         super.bindViews(savedInstanceState);
+
         showActionBar();
+
+        checkPermissions(new PermissionListener() {
+            @Override
+            public void requestPermissionSuccess() {
+
+            }
+
+            @Override
+            public void requestPermissionFail(String[] deniedPermissions) {
+
+            }
+        }, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.WRITE_CALENDAR);
+
     }
 
     @Override
@@ -25,11 +42,13 @@ public class MainActivity extends BaseActivity {
         Toast.makeText(this, "点击了重试", Toast.LENGTH_SHORT).show();
     }
 
+
     public void doClick(View view) {
         TextView tv = (TextView) view;
         //设置ActionBar的背景颜色
         setActionBarBackgroudColor(Color.parseColor(tv.getText().toString()));
     }
+
 
     public void doImgClick(View view) {
         int resId = 0;
@@ -47,6 +66,7 @@ public class MainActivity extends BaseActivity {
         //设置ActionBar的背景图片
         setActionBarBackgroudResource(resId);
     }
+
 
     public void doBtnClick(View view) {
         switch (view.getId()) {
