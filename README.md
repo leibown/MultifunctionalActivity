@@ -164,6 +164,7 @@ allprojects {
         @Override
         public void bindViews(Bundle savedInstanceState) {
             super.bindViews(savedInstanceState);
+          	//调用setActionBar()过后也需要调用此方法才能显示出来
           	showActionBar();
         }
       
