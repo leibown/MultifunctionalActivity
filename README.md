@@ -108,66 +108,65 @@ allprojects {
 
           //设置各种状态时中间显示的图片
           setStatusImageViewImageResource(R.drawable.android);
-
-
-          View view = View.inflate(this, R.layout.layout_actionbar, null);
-          //设置ActionBar，传入ActionBar布局
-          setActionBar(view);
-          view.findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                  showContent();
-              }
-          });
+        View view = View.inflate(this, R.layout.layout_actionbar, null);
+        //设置ActionBar，传入ActionBar布局
+        setActionBar(view);
+        view.findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showContent();
+            }
+        });
+    }
       }
-  }
   ```
 
-  MultifunctionalActivity是一个抽象类，里面含有几个抽象方法：
+
+  MultifunctionalActivity是一个抽象类，里面含有几个抽象方法：	
 
   ```java
-  	/**
-       * 是否需要装载能显示各种状态的ViewGroup
-       */
-      public abstract boolean isNeedStatusView();
+   	 /**
+         * 是否需要装载能显示各种状态的ViewGroup
+         */
+        public abstract boolean isNeedStatusView();
 
-      /**
-       * 获取Activity布局文件Id
-       *
-       * @return
-       */
-      public abstract int getResId();
+        /**
+         * 获取Activity布局文件Id
+         *
+         * @return
+         */
+        public abstract int getResId();
 
-      /**
-       * 子类初始化view的方法
-       * (在MultifunctionalActivity的onCreat方法里面调用，所以用于一些初始化操作)
-       *
-       * @param savedInstanceState
-       */
-      public abstract void bindViews(Bundle savedInstanceState);
+        /**
+         * 子类初始化view的方法
+         * (在MultifunctionalActivity的onCreat方法里面调用，所以用于一些初始化操作)
+         *
+         * @param savedInstanceState
+         */
+        public abstract void bindViews(Bundle savedInstanceState);
   ```
 
-  这个地方我使用的BaseActivity也是抽象类，但是只实现了isNeedStatusView()和bindViews()方法。getResId()方法必须交给子类Activity来实现，因为这个是获取子类Activity布局文件Id用的。例如：
+    这个地方我使用的BaseActivity也是抽象类，但是只实现了isNeedStatusView()和bindViews()方法。getResId()方法必须交给子类Activity来实现，因为这个是获取子类Activity布局文件Id用的。例如：	
 
   ```java
-  public class MainActivity extends BaseActivity {
+    public class MainActivity extends BaseActivity {
 
-      @Override
-      public int getResId() {
-          return R.layout.activity_main;
-      }
+        @Override
+        public int getResId() {
+            return R.layout.activity_main;
+        }
 
-      @Override
-      public void bindViews(Bundle savedInstanceState) {
-          super.bindViews(savedInstanceState);
-        	showActionBar();
-      }
-    
-      @Override
-      public void reTry() {
-          Toast.makeText(this, "点击了重试", Toast.LENGTH_SHORT).show();
-      }
-  }
+        @Override
+        public void bindViews(Bundle savedInstanceState) {
+            super.bindViews(savedInstanceState);
+          	showActionBar();
+        }
+      
+        @Override
+        public void reTry() {
+            Toast.makeText(this, "点击了重试", Toast.LENGTH_SHORT).show();
+        }
+    }
   ```
 
 ## api
@@ -175,20 +174,11 @@ allprojects {
 设置相关：
 
 ```java
+//设置ActionBar，传入ActionBar布局
+void setActionBar(View actionBar);
+
 //设置显示ActionBar
 void showActionBar();
-
-//设置没有数据时的提示文字
-void setEmptyText(String emptyText);
-
-//设置正在加载时数据时的提示文字
-void setLoadingText(String loadingText);
-
-//设置加载失败，重试时的提示文字
-void setReTryText(String reTryText);
-
-//设置各种状态时中间显示的图片
-void setStatusImageViewImageResource(int resId);
 
 //设置ActionBar的背景颜色
 void setActionBarBackgroudColor(int color);
@@ -206,6 +196,18 @@ void restoreStatusBarMode();
 切换状态相关：
 
 ```java
+//设置没有数据时的提示文字
+void setEmptyText(String emptyText);
+
+//设置正在加载时数据时的提示文字
+void setLoadingText(String loadingText);
+
+//设置加载失败，重试时的提示文字
+void setReTryText(String reTryText);
+
+//设置各种状态时中间显示的图片
+void setStatusImageViewImageResource(int resId);
+
 //显示内容
 void showContent();
 //显示加载中状态
@@ -221,5 +223,3 @@ void showRetry();
 > 里面的retry()方法需要你在Activity里面重写，那样点击重试时就会执行这个reTry()方法，就像上面代码中的MainActivity一样。
 
 
-
-</div>
