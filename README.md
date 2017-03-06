@@ -253,3 +253,5 @@ void showRetry();
 > 里面的retry()方法需要你在Activity里面重写，那样点击重试时就会执行这个reTry()方法，就像上面代码中的MainActivity一样。
 
 还有些具体的用法可以去看Demo中BaseActivity和MainActivity中的使用。
+
+要是遇到BUG、哪里不清楚、觉得我写得不合理的地方欢迎大家提Issues，我会及时解决。非常感谢 : )
