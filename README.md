@@ -29,7 +29,7 @@ allprojects {
 
 ```java
 	dependencies {
-	        compile 'com.github.leibown:MultifunctionalActivity:1.0'
+	        compile 'com.github.leibown:MultifunctionalActivity:1.1'
 	}
 ```
 

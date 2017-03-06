@@ -1,4 +1,4 @@
-package com.leibown.multifunctionalacitvity;
+package com.leibown.demo;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.leibown.multifunctionalacitvity;
+package com.leibown.demo;
 
 import android.os.Bundle;
 import android.view.View;
