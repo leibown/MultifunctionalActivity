@@ -21,17 +21,20 @@ public class MainActivity extends BaseActivity {
     public void bindViews(Bundle savedInstanceState) {
         super.bindViews(savedInstanceState);
 
+        //显示ActionBar
         showActionBar();
 
+        //请求动态权限
         checkPermissions(new PermissionListener() {
             @Override
             public void requestPermissionSuccess() {
-
+                // TODO: 获取权限成功
             }
 
             @Override
             public void requestPermissionFail(String[] deniedPermissions) {
-
+                // TODO: 获取权限失败
+                //deniedPermissions：未允许的权限数组
             }
         }, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.WRITE_CALENDAR);
 
@@ -41,7 +44,6 @@ public class MainActivity extends BaseActivity {
     public void reTry() {
         Toast.makeText(this, "点击了重试", Toast.LENGTH_SHORT).show();
     }
-
 
     public void doClick(View view) {
         TextView tv = (TextView) view;

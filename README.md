@@ -198,6 +198,18 @@ void setStatusBarDarkMode();
 void restoreStatusBarMode();
 ```
 
+6.0的动态权限：
+
+```java
+/**
+  * 检查是否缺少权限
+  *
+  * @param listener		 回调接口
+  * @param permissions   选线字符串数组
+  */
+void checkPermissions(PermissionListener listener, String... permissions);
+```
+
 切换状态相关：
 
 ```java
@@ -239,4 +251,4 @@ void showRetry();
 >
 > 里面的retry()方法需要你在Activity里面重写，那样点击重试时就会执行这个reTry()方法，就像上面代码中的MainActivity一样。
 
-
+还有些具体的用法可以去看Demo中BaseActivity和MainActivity中的使用。
