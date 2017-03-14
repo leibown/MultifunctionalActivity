@@ -2,6 +2,8 @@
 
 # MultifunctionalActivity
 
+> #### 如果只需要透明状态栏就使用[**TransparentActionBarUtils**](https://github.com/leibown/TransparentActionBarUtils)工具类
+
 #### 一个带有透明状态栏的多功能Activity,可以在开发中当做BaseActivity来用
 
 #### 1.透明状态栏
