@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -15,8 +15,7 @@
             android:id="@+id/iv_status_img"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/google"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <TextView
             android:id="@+id/tv_status_content"
@@ -25,6 +24,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="正在加载..." />
+
     </LinearLayout>
 
-</RelativeLayout>
+</merge>

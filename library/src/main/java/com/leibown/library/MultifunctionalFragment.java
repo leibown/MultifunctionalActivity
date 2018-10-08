@@ -5,7 +5,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,44 +22,39 @@ import com.leibown.library.widget.status.StatusViewContainer;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MultifunctionalActivity extends AppCompatActivity {
+/**
+ * Created by Administrator on 2018/3/26.
+ */
 
+public abstract class MultifunctionalFragment extends Fragment {
 
     private View mContentView;
     private LinearLayout mLlTittleBar;
-
 
     //用于装载Loading,retry等View的容器
     private StatusViewContainer mStatusContainer;
     //当前状态是否是重试状态
     private LinearLayout containerView;
-    private View statusBar;
-
+    protected View statusBar;
     private View statusBarWhenActionbarHide;
 
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        onBaseCreate(savedInstanceState);
-        super.onCreate(savedInstanceState);
-
-        LayoutInflater inflater = getLayoutInflater();
-        containerView = (LinearLayout) inflater.inflate(R.layout.activity_base, null);
-        setContentView(containerView);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        containerView = (LinearLayout) inflater.inflate(R.layout.fragment_base, null);
 
         //用来填充Android版本在4.4以上的状态栏
-        statusBar = findViewById(R.id.status_bar);
-        statusBarWhenActionbarHide = findViewById(R.id.status_bar_when_actionbar_hide);
-        mLlTittleBar = findViewById(R.id.ll_tittle_bar);
+        mLlTittleBar = containerView.findViewById(R.id.ll_tittle_bar);
 
         mContentView = inflater.inflate(getResId(), null);
         containerView.addView(mContentView);
         LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
         mContentView.setLayoutParams(childParams);
-
+        statusBar = containerView.findViewById(R.id.status_bar);
+        statusBarWhenActionbarHide = containerView.findViewById(R.id.status_bar_when_actionbar_hide);
         if (isNeedStatusView()) {
             mStatusContainer = new StatusViewContainer();
-            DefaultStatusView defaultStatusView = new DefaultStatusView(this);
+            DefaultStatusView defaultStatusView = new DefaultStatusView(getContext());
             mStatusContainer.setStatusView(defaultStatusView);
             containerView.addView(mStatusContainer.getView());
             mStatusContainer.getView().setLayoutParams(childParams);
@@ -72,35 +68,29 @@ public abstract class MultifunctionalActivity extends AppCompatActivity {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                View decorView = getWindow().getDecorView();
+                View decorView = getActivity().getWindow().getDecorView();
                 int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-
                 decorView.setSystemUiVisibility(option);
-                getWindow().setStatusBarColor(Color.TRANSPARENT);
+                getActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
             } else {
-                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             }
             //如果Android版本大于4.4，说明状态栏就可以被透明，我们自己的布局就可以放到状态栏之下
             //我们把自定义的ActionBar的高度增高
             ViewGroup.LayoutParams params = mLlTittleBar.getLayoutParams();
-            params.height = DisplayUtil.getBarHeight(getApplicationContext()) + DisplayUtil.dip2px(getApplicationContext(), 58);
+            params.height = DisplayUtil.dip2px(getActivity().getApplicationContext(), 44);
             mLlTittleBar.requestLayout();
-            //把用于填充状态栏的View高度设置成跟状态栏一样的高度
+
             ViewGroup.LayoutParams params2 = statusBar.getLayoutParams();
-            params2.height = DisplayUtil.getBarHeight(getApplicationContext());
+            params2.height = DisplayUtil.getBarHeight(getContext());
             statusBar.requestLayout();
-            statusBarWhenActionbarHide.setLayoutParams(params2);
         } else
             statusBar.setVisibility(View.GONE);
         bindViews(savedInstanceState);
-    }
-
-    protected void onBaseCreate(Bundle savedInstanceState) {
-
+        return containerView;
     }
 
     public View getContentView() {
@@ -151,12 +141,13 @@ public abstract class MultifunctionalActivity extends AppCompatActivity {
         mLlTittleBar.setVisibility(View.GONE);
     }
 
+
     /**
      * 设置ActionBar的背景颜色
      *
      * @param color 颜色值
      */
-    public void setActionBarBackgroundColor(int color) {
+    public void setActionBarBackgroudColor(int color) {
         mLlTittleBar.setBackgroundColor(color);
     }
 
@@ -165,17 +156,9 @@ public abstract class MultifunctionalActivity extends AppCompatActivity {
      *
      * @param imgRes 图片资源Id
      */
-    public void setActionBarBackgroundResource(int imgRes) {
+    public void setActionBarBackgroudResource(int imgRes) {
         mLlTittleBar.setBackgroundResource(imgRes);
     }
-
-    /**
-     * 重新请求网络数据，如果首次加载就出现加载失败，界面显示加载失败，在点击“加载失败，请重试”时执行的方法
-     */
-    public void reTry() {
-
-    }
-
 
     protected void setLoadingText(String loadingText) {
         mStatusContainer.getStatusView().setLoadingText(loadingText);
@@ -200,6 +183,12 @@ public abstract class MultifunctionalActivity extends AppCompatActivity {
 
     protected void setRetryImgRes(int res) {
         mStatusContainer.getStatusView().setErrorImgRes(res);
+    }
+
+    /**
+     * 重新请求网络数据，如果首次加载就出现加载失败，界面显示加载失败，在点击“加载失败，请重试”时执行的方法
+     */
+    public void reTry() {
     }
 
 
@@ -258,7 +247,7 @@ public abstract class MultifunctionalActivity extends AppCompatActivity {
      */
     protected void checkPermissions(PermissionListener listener, String... permissions) {
         this.mPermissionListener = listener;
-        PermissionManager.checkPermission(this, permissions, PERMISSION_REQUEST_CODE, mPermissionListener);
+        PermissionManager.checkPermission(getActivity(), permissions, PERMISSION_REQUEST_CODE, mPermissionListener);
     }
 
     @Override
@@ -266,38 +255,9 @@ public abstract class MultifunctionalActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         String[] deniedPermissions = hasAllPermissionsGranted(permissions, grantResults);
         if (requestCode == PERMISSION_REQUEST_CODE && deniedPermissions == null) {
-            if (mPermissionListener != null)
-                mPermissionListener.requestPermissionSuccess();
+            mPermissionListener.requestPermissionSuccess();
         } else {
-            if (mPermissionListener != null)
-                mPermissionListener.requestPermissionFail(deniedPermissions);
-        }
-    }
-
-    /**
-     * 设置状态栏字体和图标为黑色
-     * Android版本在6.0以上时可以调用此方法来改变状态栏字体图标颜色
-     */
-    protected void setStatusBarDarkMode() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            try {
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * 恢复状态栏字体和图标的颜色(可以理解为把状态栏字体图标重新设置为白色)
-     */
-    protected void restoreStatusBarMode() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            try {
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            mPermissionListener.requestPermissionFail(deniedPermissions);
         }
     }
 
@@ -323,29 +283,38 @@ public abstract class MultifunctionalActivity extends AppCompatActivity {
         return deniedPermissions;
     }
 
-    public void hideStatusBar() {
-        statusBar.setVisibility(View.GONE);
-        statusBarWhenActionbarHide.setVisibility(View.GONE);
+    public void showStatusBar() {
+        statusBar.setVisibility(View.VISIBLE);
     }
 
+    public void hideStatusBar() {
+        statusBar.setVisibility(View.GONE);
+    }
 
     /**
-     * 自定义Loading,ReTry,Empty这种状态时显示的View
-     *
-     * @param view 能装各种状态的View
+     * 设置状态栏字体和图标为黑色
+     * Android版本在6.0以上时可以调用此方法来改变状态栏字体图标颜色
      */
-    protected void setStatusView(View view) {
-        if (isNeedStatusView()) {
-            containerView.removeView(mStatusContainer.getView());
-            mStatusContainer.setStatusView(view);
-            containerView.addView(mStatusContainer.getView());
-            mStatusContainer.getView().setVisibility(View.GONE);
-            mStatusContainer.setOnRetryListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    reTry();
-                }
-            });
+    protected void setStatusBarDarkMode() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 恢复状态栏字体和图标的颜色(可以理解为把状态栏字体图标重新设置为白色)
+     */
+    protected void restoreStatusBarMode() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

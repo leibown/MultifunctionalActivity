@@ -23,7 +23,7 @@ public class MainActivity extends BaseActivity {
 
         //显示ActionBar
         showActionBar();
-
+//        hideActionBar();
         //请求动态权限
         checkPermissions(new PermissionListener() {
             @Override
@@ -48,7 +48,7 @@ public class MainActivity extends BaseActivity {
     public void doClick(View view) {
         TextView tv = (TextView) view;
         //设置ActionBar的背景颜色
-        setActionBarBackgroudColor(Color.parseColor(tv.getText().toString()));
+        setActionBarBackgroundColor(Color.parseColor(tv.getText().toString()));
     }
 
 
@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity {
                 break;
         }
         //设置ActionBar的背景图片
-        setActionBarBackgroudResource(resId);
+        setActionBarBackgroundResource(resId);
     }
 
 

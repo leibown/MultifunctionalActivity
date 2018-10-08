@@ -35,9 +35,9 @@ public abstract class BaseActivity extends MultifunctionalActivity {
         //设置各种状态时中间显示的图片
 //        setStatusImageViewImageResource(R.drawable.android);
 
-        View statusView = View.inflate(this, R.layout.layout_status, null);
-        //设置各种状态时的View
-        setStatusView(statusView, R.id.tv_status_content);
+//        View statusView = View.inflate(this, R.layout.layout_status, null);
+//        //设置各种状态时的View
+//        setStatusView(statusView);
 
 
         View view = View.inflate(this, R.layout.layout_actionbar, null);
