@@ -169,6 +169,16 @@ public abstract class MultifunctionalActivity extends AppCompatActivity {
         mLlTittleBar.setBackgroundResource(imgRes);
     }
 
+
+    /**
+     * 这是状态栏背景颜色
+     *
+     * @param color
+     */
+    public void setStatusBarBackgroundColor(int color) {
+        statusBarWhenActionbarHide.setBackgroundColor(color);
+    }
+
     /**
      * 重新请求网络数据，如果首次加载就出现加载失败，界面显示加载失败，在点击“加载失败，请重试”时执行的方法
      */
