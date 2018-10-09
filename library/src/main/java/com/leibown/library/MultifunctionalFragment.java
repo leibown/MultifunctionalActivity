@@ -86,6 +86,7 @@ public abstract class MultifunctionalFragment extends Fragment {
 
             ViewGroup.LayoutParams params2 = statusBar.getLayoutParams();
             params2.height = DisplayUtil.getBarHeight(getContext());
+            statusBarWhenActionbarHide.setLayoutParams(params2);
             statusBar.requestLayout();
         } else
             statusBar.setVisibility(View.GONE);
