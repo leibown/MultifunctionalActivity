@@ -139,7 +139,6 @@ public abstract class MultifunctionalActivity extends AppCompatActivity {
      * 设置显示ActionBar
      */
     public void showActionBar() {
-        statusBarWhenActionbarHide.setVisibility(View.GONE);
         mLlTittleBar.setVisibility(View.VISIBLE);
     }
 
@@ -147,7 +146,6 @@ public abstract class MultifunctionalActivity extends AppCompatActivity {
      * 设置显示ActionBar
      */
     public void hideActionBar() {
-        statusBarWhenActionbarHide.setVisibility(View.VISIBLE);
         mLlTittleBar.setVisibility(View.GONE);
     }
 
