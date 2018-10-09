@@ -324,9 +324,13 @@ public abstract class MultifunctionalActivity extends AppCompatActivity {
     }
 
     public void hideStatusBar() {
-        statusBar.setVisibility(View.GONE);
         statusBarWhenActionbarHide.setVisibility(View.GONE);
     }
+
+    public void showStatusBar() {
+        statusBarWhenActionbarHide.setVisibility(View.VISIBLE);
+    }
+
 
 
     /**

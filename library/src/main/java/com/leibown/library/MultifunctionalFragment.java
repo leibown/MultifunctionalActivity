@@ -148,6 +148,7 @@ public abstract class MultifunctionalFragment extends Fragment {
      * @param color 颜色值
      */
     public void setActionBarBackgroudColor(int color) {
+        statusBarWhenActionbarHide.setBackgroundColor(color);
         mLlTittleBar.setBackgroundColor(color);
     }
 
@@ -284,11 +285,11 @@ public abstract class MultifunctionalFragment extends Fragment {
     }
 
     public void showStatusBar() {
-        statusBar.setVisibility(View.VISIBLE);
+        statusBarWhenActionbarHide.setVisibility(View.VISIBLE);
     }
 
     public void hideStatusBar() {
-        statusBar.setVisibility(View.GONE);
+        statusBarWhenActionbarHide.setVisibility(View.GONE);
     }
 
     /**
