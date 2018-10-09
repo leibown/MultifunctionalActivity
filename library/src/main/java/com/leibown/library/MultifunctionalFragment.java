@@ -81,7 +81,7 @@ public abstract class MultifunctionalFragment extends Fragment {
             //如果Android版本大于4.4，说明状态栏就可以被透明，我们自己的布局就可以放到状态栏之下
             //我们把自定义的ActionBar的高度增高
             ViewGroup.LayoutParams params = mLlTittleBar.getLayoutParams();
-            params.height = DisplayUtil.dip2px(getActivity().getApplicationContext(), 44);
+            params.height = DisplayUtil.getBarHeight(getContext()) + DisplayUtil.dip2px(getContext(), 58);
             mLlTittleBar.requestLayout();
 
             ViewGroup.LayoutParams params2 = statusBar.getLayoutParams();
