@@ -43,7 +43,7 @@ public abstract class MultifunctionalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         LayoutInflater inflater = getLayoutInflater();
-        containerView = (LinearLayout) inflater.inflate(R.layout.activity_base, null);
+        containerView = (LinearLayout) inflater.inflate(R.layout.activity_multifunctional, null);
         setContentView(containerView);
 
         //用来填充Android版本在4.4以上的状态栏

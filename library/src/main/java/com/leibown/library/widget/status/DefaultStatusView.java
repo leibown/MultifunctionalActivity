@@ -50,7 +50,7 @@ public class DefaultStatusView extends RelativeLayout implements StatusView {
 
     private void init() {
 
-        LayoutInflater.from(context).inflate(R.layout.status_layout, this, true);
+        LayoutInflater.from(context).inflate(R.layout.default_status_layout, this, true);
 
         ivStatusImg = findViewById(R.id.iv_status_img);
         tvStatusContent = findViewById(R.id.tv_status_content);
