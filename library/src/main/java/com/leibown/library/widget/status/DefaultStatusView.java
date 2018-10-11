@@ -3,6 +3,7 @@ package com.leibown.library.widget.status;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -98,19 +99,29 @@ public class DefaultStatusView extends RelativeLayout implements StatusView {
     @Override
     public void showEmpty() {
         ivStatusImg.setImageResource(emptyImgRes);
+        requestImageViewLayout();
         tvStatusContent.setText(emptyText);
     }
 
     @Override
     public void showError() {
         ivStatusImg.setImageResource(errorImgRes);
+        requestImageViewLayout();
         tvStatusContent.setText(errorText);
     }
 
     @Override
     public void showLoading() {
         ivStatusImg.setImageResource(loadingImgRes);
+        requestImageViewLayout();
         tvStatusContent.setText(loadingText);
+    }
+
+    private void requestImageViewLayout() {
+        ViewGroup.LayoutParams layoutParams = ivStatusImg.getLayoutParams();
+        layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        ivStatusImg.requestLayout();
     }
 
 }
