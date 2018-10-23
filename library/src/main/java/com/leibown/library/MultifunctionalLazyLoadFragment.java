@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -482,16 +483,21 @@ public abstract class MultifunctionalLazyLoadFragment extends Fragment {
     }
 
     public void onFragmentFirstVisible() {
-//        LogUtils.e(getClass().getSimpleName() + "  对用户第一次可见");
+        Log.e("leibown", getClassSimpleName() + "  对用户第一次可见");
 
     }
 
     public void onFragmentResume() {
-//        LogUtils.e(getClass().getSimpleName() + "  对用户可见");
+        Log.e("leibown", getClassSimpleName() + "  对用户可见");
     }
 
     public void onFragmentPause() {
-//        LogUtils.e(getClass().getSimpleName() + "  对用户不可见");
+        Log.e("leibown", getClassSimpleName() + "  对用户不可见");
+    }
+
+
+    protected String getClassSimpleName() {
+        return getClass().getSimpleName();
     }
 
     @Override
