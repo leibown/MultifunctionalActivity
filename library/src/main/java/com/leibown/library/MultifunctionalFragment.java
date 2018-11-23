@@ -18,6 +18,7 @@ import com.leibown.library.peimission.PermissionManager;
 import com.leibown.library.utils.DisplayUtil;
 import com.leibown.library.widget.status.DefaultStatusView;
 import com.leibown.library.widget.status.StatusViewContainer;
+import com.leibown.library.widget.status.StatusController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +27,7 @@ import java.util.List;
  * Created by Administrator on 2018/3/26.
  */
 
-public abstract class MultifunctionalFragment extends Fragment {
+public abstract class MultifunctionalFragment extends Fragment implements StatusController {
 
     private View mContentView;
     private LinearLayout mLlTittleBar;
@@ -168,29 +169,34 @@ public abstract class MultifunctionalFragment extends Fragment {
         statusBarWhenActionbarHide.setBackgroundColor(color);
     }
 
-    protected void setLoadingText(String loadingText) {
+    @Override
+    public void setLoadingText(String loadingText) {
         mStatusContainer.getStatusView().setLoadingText(loadingText);
     }
 
-
-    protected void setLoadImgRes(int res) {
-        mStatusContainer.getStatusView().setLoadingImgRes(res);
-    }
-
-    protected void setEmptyText(String emptyText) {
+    @Override
+    public void setEmptyText(String emptyText) {
         mStatusContainer.getStatusView().setEmptyText(emptyText);
     }
 
-    protected void setEmptyImgRes(int res) {
+    @Override
+    public void setEmptyImgRes(int res) {
         mStatusContainer.getStatusView().setEmptyImgRes(res);
     }
 
-    protected void setReTryText(String reTryText) {
-        mStatusContainer.getStatusView().setErrorText(reTryText);
+    @Override
+    public void setErrorImgRes(int imgRes) {
+        mStatusContainer.getStatusView().setErrorImgRes(imgRes);
     }
 
-    protected void setRetryImgRes(int res) {
-        mStatusContainer.getStatusView().setErrorImgRes(res);
+    @Override
+    public void setLoadingImgRes(int imgRes) {
+        mStatusContainer.getStatusView().setLoadingImgRes(imgRes);
+    }
+
+    @Override
+    public void setErrorText(String errorText) {
+        mStatusContainer.getStatusView().setErrorText(errorText);
     }
 
     /**
@@ -203,7 +209,8 @@ public abstract class MultifunctionalFragment extends Fragment {
     /**
      * 显示Loading状态
      */
-    protected void showLoading() {
+    @Override
+    public void showLoading() {
         if (isNeedStatusView()) {
             mContentView.setVisibility(View.GONE);
             mStatusContainer.getView().setVisibility(View.VISIBLE);
@@ -214,7 +221,8 @@ public abstract class MultifunctionalFragment extends Fragment {
     /**
      * 显示Empty状态
      */
-    protected void showEmpty() {
+    @Override
+    public void showEmpty() {
         if (isNeedStatusView()) {
             mContentView.setVisibility(View.GONE);
             mStatusContainer.getView().setVisibility(View.VISIBLE);
@@ -225,7 +233,8 @@ public abstract class MultifunctionalFragment extends Fragment {
     /**
      * 显示Retry状态
      */
-    protected void showRetry() {
+    @Override
+    public void showRetry() {
         if (isNeedStatusView()) {
             mContentView.setVisibility(View.GONE);
             mStatusContainer.getView().setVisibility(View.VISIBLE);
@@ -236,11 +245,22 @@ public abstract class MultifunctionalFragment extends Fragment {
     /**
      * 显示内容
      */
-    protected void showContent() {
+    @Override
+    public void showContent() {
         if (isNeedStatusView()) {
             mContentView.setVisibility(View.VISIBLE);
             mStatusContainer.getView().setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void loadComplete() {
+
+    }
+
+    @Override
+    public void setNoMoreData() {
+
     }
 
 
