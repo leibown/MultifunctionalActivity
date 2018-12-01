@@ -345,4 +345,9 @@ public abstract class MultifunctionalFragment extends Fragment implements Status
             }
         }
     }
+
+
+    public StatusViewContainer getStatusViewContainer() {
+        return mStatusContainer;
+    }
 }

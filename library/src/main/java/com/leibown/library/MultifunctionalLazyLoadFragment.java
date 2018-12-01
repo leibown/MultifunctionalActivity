@@ -529,4 +529,7 @@ public abstract class MultifunctionalLazyLoadFragment extends Fragment implement
     }
 
 
+    public StatusViewContainer getStatusViewContainer() {
+        return mStatusContainer;
+    }
 }

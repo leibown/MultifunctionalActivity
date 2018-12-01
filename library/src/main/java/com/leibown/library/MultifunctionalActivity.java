@@ -378,4 +378,8 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
             });
         }
     }
+
+    public StatusViewContainer getStatusViewContainer() {
+        return mStatusContainer;
+    }
 }
