@@ -26,8 +26,4 @@ public interface StatusView {
 
     void showLoading();
 
-    void loadComplete();
-
-    void setNoMoreData();
-
 }
