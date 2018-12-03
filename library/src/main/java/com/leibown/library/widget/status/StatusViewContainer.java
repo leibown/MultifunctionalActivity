@@ -1,7 +1,6 @@
 package com.leibown.library.widget.status;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -32,7 +31,6 @@ public class StatusViewContainer {
 
     public StatusViewContainer(Context context) {
         container = new RelativeLayout(context);
-        container.setBackgroundColor(Color.parseColor("#0000ff"));
     }
 
     public void setContentView(View view) {
