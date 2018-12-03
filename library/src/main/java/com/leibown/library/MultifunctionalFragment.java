@@ -17,6 +17,7 @@ import com.leibown.library.peimission.PermissionListener;
 import com.leibown.library.peimission.PermissionManager;
 import com.leibown.library.utils.DisplayUtil;
 import com.leibown.library.widget.status.DefaultStatusView;
+import com.leibown.library.widget.status.IStatusViewContainer;
 import com.leibown.library.widget.status.StatusViewContainer;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import java.util.List;
  * Created by Administrator on 2018/3/26.
  */
 
-public abstract class MultifunctionalFragment extends Fragment  {
+public abstract class MultifunctionalFragment extends Fragment implements IStatusViewContainer {
 
     private LinearLayout mLlTittleBar;
 
@@ -314,7 +315,7 @@ public abstract class MultifunctionalFragment extends Fragment  {
         }
     }
 
-
+    @Override
     public StatusViewContainer getStatusViewContainer() {
         return mStatusContainer;
     }
