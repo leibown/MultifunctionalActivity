@@ -123,22 +123,6 @@ public class StatusViewContainer {
     }
 
 
-    /**
-     * 加载完成
-     */
-    public void loadComplete() {
-        getStatusView().loadComplete();
-    }
-
-
-    /**
-     * 没有更多数据
-     */
-    public void setNoMoreData() {
-        getStatusView().setNoMoreData();
-    }
-
-
     public void setLoadingText(String loadingText) {
         getStatusView().setLoadingText(loadingText);
     }
