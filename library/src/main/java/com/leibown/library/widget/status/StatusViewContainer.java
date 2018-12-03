@@ -15,6 +15,9 @@ import org.jetbrains.annotations.Nullable;
 
 public class StatusViewContainer {
 
+    private View.OnClickListener retryListener;
+    private View.OnClickListener emptyListener;
+
     private static final int STATUS_LOADING = 0;
     private static final int STATUS_EMPTY = 1;
     private static final int STATUS_ERROR = 2;
@@ -51,6 +54,22 @@ public class StatusViewContainer {
         } else {
             throw new IllegalArgumentException("plz implements StatusView witch you enter");
         }
+
+        statusView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (status) {
+                    case STATUS_EMPTY:
+                        if (emptyListener != null)
+                            emptyListener.onClick(v);
+                        break;
+                    case STATUS_ERROR:
+                        if (retryListener != null)
+                            retryListener.onClick(v);
+                        break;
+                }
+            }
+        });
     }
 
 
@@ -94,26 +113,13 @@ public class StatusViewContainer {
         contentView.setVisibility(View.VISIBLE);
     }
 
+
     public void setOnRetryListener(@Nullable final View.OnClickListener onClickListener) {
-        if (getView() != null && onClickListener != null)
-            statusView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (status == STATUS_ERROR)
-                        onClickListener.onClick(v);
-                }
-            });
+        this.retryListener = onClickListener;
     }
 
     public void setOnEmptyClickListener(@Nullable final View.OnClickListener onClickListener) {
-        if (getView() != null && onClickListener != null)
-            statusView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (status == STATUS_EMPTY)
-                        onClickListener.onClick(v);
-                }
-            });
+        this.emptyListener = onClickListener;
     }
 
 
