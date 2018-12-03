@@ -117,6 +117,16 @@ public class DefaultStatusView extends RelativeLayout implements StatusView {
         tvStatusContent.setText(loadingText);
     }
 
+    @Override
+    public void loadComplete() {
+
+    }
+
+    @Override
+    public void setNoMoreData() {
+
+    }
+
     private void requestImageViewLayout() {
         ViewGroup.LayoutParams layoutParams = ivStatusImg.getLayoutParams();
         layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;

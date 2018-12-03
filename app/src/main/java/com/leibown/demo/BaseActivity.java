@@ -11,16 +11,6 @@ import com.leibown.library.MultifunctionalActivity;
 
 public abstract class BaseActivity extends MultifunctionalActivity {
 
-    /**
-     * 如果此方法返回false，那切换状态相关方法就会失效
-     *
-     * @return
-     */
-    @Override
-    public boolean isNeedStatusView() {
-        return true;
-    }
-
     @Override
     public void bindViews(Bundle savedInstanceState) {
         //设置没有数据时的提示文字
@@ -30,7 +20,7 @@ public abstract class BaseActivity extends MultifunctionalActivity {
         setLoadingText("正在玩命加载中");
 
         //设置加载失败，重试时的提示文字
-        setReTryText("加载失败请稍后再试");
+        setErrorText("加载失败请稍后再试");
 
         //设置各种状态时中间显示的图片
 //        setStatusImageViewImageResource(R.drawable.android);

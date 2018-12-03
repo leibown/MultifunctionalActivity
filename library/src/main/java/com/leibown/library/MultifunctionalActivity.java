@@ -17,15 +17,13 @@ import com.leibown.library.peimission.PermissionManager;
 import com.leibown.library.utils.DisplayUtil;
 import com.leibown.library.widget.status.DefaultStatusView;
 import com.leibown.library.widget.status.StatusViewContainer;
-import com.leibown.library.widget.status.StatusController;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MultifunctionalActivity extends AppCompatActivity implements StatusController {
+public abstract class MultifunctionalActivity extends AppCompatActivity {
 
 
-    private View mContentView;
     private LinearLayout mLlTittleBar;
 
 
@@ -52,25 +50,23 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
         statusBarWhenActionbarHide = findViewById(R.id.status_bar_when_actionbar_hide);
         mLlTittleBar = findViewById(R.id.ll_tittle_bar);
 
-        mContentView = inflater.inflate(getResId(), null);
-        containerView.addView(mContentView);
-        LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
-        mContentView.setLayoutParams(childParams);
+        View mContentView = inflater.inflate(getResId(), null);
 
-        if (isNeedStatusView()) {
-            mStatusContainer = new StatusViewContainer();
-            DefaultStatusView defaultStatusView = new DefaultStatusView(this);
-            mStatusContainer.setStatusView(defaultStatusView);
-            containerView.addView(mStatusContainer.getView());
-            mStatusContainer.getView().setLayoutParams(childParams);
-            mStatusContainer.getView().setVisibility(View.GONE);
-            mStatusContainer.setOnRetryListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    reTry();
-                }
-            });
-        }
+        mStatusContainer = new StatusViewContainer(this);
+        LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+        containerView.addView(mStatusContainer.getView(), childParams);
+
+        DefaultStatusView defaultStatusView = new DefaultStatusView(this);
+        mStatusContainer.setStatusView(defaultStatusView);
+        mStatusContainer.setContentView(mContentView);
+        mStatusContainer.showContent();
+
+        mStatusContainer.setOnRetryListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reTry();
+            }
+        });
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
@@ -108,10 +104,6 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
         return containerView;
     }
 
-    /**
-     * 是否需要装载能显示各种状态的ViewGroup
-     */
-    public abstract boolean isNeedStatusView();
 
     /**
      * 获取Activity布局文件Id
@@ -185,90 +177,63 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
 
     }
 
-    @Override
     public void setLoadingText(String loadingText) {
-        mStatusContainer.getStatusView().setLoadingText(loadingText);
+        mStatusContainer.setLoadingText(loadingText);
     }
 
-    @Override
     public void setEmptyText(String emptyText) {
-        mStatusContainer.getStatusView().setEmptyText(emptyText);
+        mStatusContainer.setEmptyText(emptyText);
     }
 
-    @Override
     public void setEmptyImgRes(int res) {
-        mStatusContainer.getStatusView().setEmptyImgRes(res);
+        mStatusContainer.setEmptyImgRes(res);
     }
 
-    @Override
     public void setErrorImgRes(int imgRes) {
-        mStatusContainer.getStatusView().setErrorImgRes(imgRes);
+        mStatusContainer.setErrorImgRes(imgRes);
     }
 
-    @Override
     public void setLoadingImgRes(int imgRes) {
-        mStatusContainer.getStatusView().setLoadingImgRes(imgRes);
+        mStatusContainer.setLoadingImgRes(imgRes);
     }
 
-    @Override
     public void setErrorText(String errorText) {
-        mStatusContainer.getStatusView().setErrorText(errorText);
+        mStatusContainer.setErrorText(errorText);
     }
 
 
     /**
      * 显示Loading状态
      */
-    @Override
     public void showLoading() {
-        if (isNeedStatusView()) {
-            mContentView.setVisibility(View.GONE);
-            mStatusContainer.getView().setVisibility(View.VISIBLE);
-            mStatusContainer.showLoading();
-        }
+        mStatusContainer.showLoading();
     }
 
     /**
      * 显示Empty状态
      */
-    @Override
     public void showEmpty() {
-        if (isNeedStatusView()) {
-            mContentView.setVisibility(View.GONE);
-            mStatusContainer.getView().setVisibility(View.VISIBLE);
-            mStatusContainer.showEmpty();
-        }
+        mStatusContainer.showEmpty();
     }
 
     /**
      * 显示Retry状态
      */
-    @Override
     public void showRetry() {
-        if (isNeedStatusView()) {
-            mContentView.setVisibility(View.GONE);
-            mStatusContainer.getView().setVisibility(View.VISIBLE);
-            mStatusContainer.showError();
-        }
+        mStatusContainer.showError();
     }
 
     /**
      * 显示内容
      */
-    @Override
     public void showContent() {
-        if (isNeedStatusView()) {
-            mContentView.setVisibility(View.VISIBLE);
-            mStatusContainer.getView().setVisibility(View.GONE);
-        }
+        mStatusContainer.showContent();
     }
 
-    @Override
     public void loadComplete() {
 
     }
 
-    @Override
     public void setNoMoreData() {
 
     }
@@ -365,18 +330,13 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
      * @param view 能装各种状态的View
      */
     protected void setStatusView(View view) {
-        if (isNeedStatusView()) {
-            containerView.removeView(mStatusContainer.getView());
-            mStatusContainer.setStatusView(view);
-            containerView.addView(mStatusContainer.getView());
-            mStatusContainer.getView().setVisibility(View.GONE);
-            mStatusContainer.setOnRetryListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    reTry();
-                }
-            });
-        }
+        mStatusContainer.setStatusView(view);
+        mStatusContainer.setOnRetryListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reTry();
+            }
+        });
     }
 
     public StatusViewContainer getStatusViewContainer() {
