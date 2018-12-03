@@ -25,29 +25,29 @@ public class StatusViewContainer {
 
     private int status = STATUS_LOADING;
 
-    private RelativeLayout linearLayout;
+    private RelativeLayout container;
 
     public StatusViewContainer(Context context) {
-        linearLayout = new RelativeLayout(context);
-        linearLayout.setBackgroundColor(Color.parseColor("#0000ff"));
+        container = new RelativeLayout(context);
+        container.setBackgroundColor(Color.parseColor("#0000ff"));
     }
 
     public void setContentView(View view) {
         if (contentView != null)
-            linearLayout.removeView(contentView);
+            container.removeView(contentView);
         contentView = view;
         LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        linearLayout.addView(view, childParams);
+        container.addView(view, childParams);
     }
 
     public void setStatusView(View view) {
         if (statusView != null)
-            linearLayout.removeView(statusView);
+            container.removeView(statusView);
 
         if (view instanceof StatusView) {
             this.statusView = view;
             LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            linearLayout.addView(view, childParams);
+            container.addView(view, childParams);
         } else {
             throw new IllegalArgumentException("plz implements StatusView witch you enter");
         }
@@ -63,7 +63,7 @@ public class StatusViewContainer {
     }
 
     public View getView() {
-        return linearLayout;
+        return container;
     }
 
 
