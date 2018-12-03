@@ -68,6 +68,7 @@ public abstract class MultifunctionalLazyLoadFragment extends Fragment {
             }
         });
 
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 View decorView = getActivity().getWindow().getDecorView();
