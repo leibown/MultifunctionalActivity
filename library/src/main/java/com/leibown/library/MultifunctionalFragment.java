@@ -47,6 +47,9 @@ public abstract class MultifunctionalFragment extends Fragment  {
 
         View mContentView = inflater.inflate(getResId(), null);
 
+        statusBar = containerView.findViewById(R.id.status_bar);
+        statusBarWhenActionbarHide = containerView.findViewById(R.id.status_bar_when_actionbar_hide);
+
         mStatusContainer = new StatusViewContainer(getContext());
         LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
         containerView.addView(mStatusContainer.getView(), childParams);
