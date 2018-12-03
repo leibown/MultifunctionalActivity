@@ -96,10 +96,6 @@ public abstract class MultifunctionalLazyLoadFragment extends Fragment {
         return containerView;
     }
 
-    /**
-     * 是否需要装载能显示各种状态的ViewGroup
-     */
-    public abstract boolean isNeedStatusView();
 
     /**
      * 获取Activity布局文件Id
