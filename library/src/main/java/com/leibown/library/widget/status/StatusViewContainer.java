@@ -143,7 +143,7 @@ public class StatusViewContainer {
     }
 
     public void setErrorText(String errorText) {
-        getStatusView().setEmptyText(errorText);
+        getStatusView().setErrorText(errorText);
     }
 
 }
