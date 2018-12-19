@@ -7,6 +7,8 @@
     <string name="change_status_bar_mode">Change Status Bar Mode</string>
     <string name="restore_status_bar_mode">Restore Status Bar Mode</string>
 
+    <string name="other_status">Show Other status view</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

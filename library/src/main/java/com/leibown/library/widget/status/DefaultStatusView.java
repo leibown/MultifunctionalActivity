@@ -3,10 +3,11 @@ package com.leibown.library.widget.status;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.leibown.library.R;
@@ -16,11 +17,13 @@ import com.leibown.library.R;
  * Created by leibown on 2018/6/20.
  */
 
-public class DefaultStatusView extends RelativeLayout implements StatusView {
-    ImageView ivStatusImg;
-    TextView tvStatusContent;
-    LinearLayout llStatusView;
-    TextView tvStatusBtn;
+public class DefaultStatusView extends FrameLayout implements StatusView {
+    //状态图片
+    private ImageView ivStatusImg;
+    //状态文字
+    private TextView tvStatusContent;
+    //可以点击部分view
+    private LinearLayout clickableView;
 
     private Context context;
     private String errorText;
@@ -51,10 +54,9 @@ public class DefaultStatusView extends RelativeLayout implements StatusView {
     private void init() {
 
         LayoutInflater.from(context).inflate(R.layout.default_status_layout, this, true);
-
         ivStatusImg = findViewById(R.id.iv_status_img);
         tvStatusContent = findViewById(R.id.tv_status_content);
-        llStatusView = findViewById(R.id.ll_status_view);
+        clickableView = findViewById(R.id.ll_status_view);
 
 
         errorText = "加载失败，请点击重试";
@@ -117,11 +119,15 @@ public class DefaultStatusView extends RelativeLayout implements StatusView {
         tvStatusContent.setText(loadingText);
     }
 
+    @Override
+    public View getClickableView() {
+        return clickableView;
+    }
+
     private void requestImageViewLayout() {
         ViewGroup.LayoutParams layoutParams = ivStatusImg.getLayoutParams();
         layoutParams.width = ViewGroup.LayoutParams.WRAP_CONTENT;
         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         ivStatusImg.requestLayout();
     }
-
 }

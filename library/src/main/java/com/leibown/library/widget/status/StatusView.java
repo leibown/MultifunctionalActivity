@@ -1,5 +1,7 @@
 package com.leibown.library.widget.status;
 
+import android.view.View;
+
 /**
  * Created by leibown on 2018/9/21.
  */
@@ -25,5 +27,7 @@ public interface StatusView {
     void showError();
 
     void showLoading();
+
+    View getClickableView();
 
 }

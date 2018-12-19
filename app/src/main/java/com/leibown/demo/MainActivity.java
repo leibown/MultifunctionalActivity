@@ -8,9 +8,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.leibown.library.peimission.PermissionListener;
+import com.leibown.library.widget.status.StatusViewContainer;
 
 public class MainActivity extends BaseActivity {
 
+
+    private OtherStatusViewContainer otherStatusViewContainer;
+
+    @Override
+    protected StatusViewContainer initStatusViewContainer() {
+        otherStatusViewContainer = new OtherStatusViewContainer(this);
+        return otherStatusViewContainer;
+    }
 
     @Override
     public int getResId() {
@@ -91,6 +100,9 @@ public class MainActivity extends BaseActivity {
             case R.id.btn_5:
                 //恢复状态栏图标和文字
                 restoreStatusBarMode();
+                break;
+            case R.id.btn_6:
+                otherStatusViewContainer.showOtherStatusView();
                 break;
         }
     }

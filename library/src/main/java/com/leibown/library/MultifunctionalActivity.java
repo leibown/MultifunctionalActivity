@@ -52,8 +52,9 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
         mLlTittleBar = findViewById(R.id.ll_tittle_bar);
 
         View mContentView = inflater.inflate(getResId(), null);
-
-        mStatusContainer = new StatusViewContainer(this);
+        mStatusContainer = initStatusViewContainer();
+        if (mStatusContainer == null)
+            mStatusContainer = new StatusViewContainer(this);
         LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
         containerView.addView(mStatusContainer.getView(), childParams);
 
@@ -95,6 +96,10 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
         } else
             statusBar.setVisibility(View.GONE);
         bindViews(savedInstanceState);
+    }
+
+    protected StatusViewContainer initStatusViewContainer() {
+        return null;
     }
 
     protected void onBaseCreate(Bundle savedInstanceState) {
@@ -330,7 +335,7 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
      *
      * @param view 能装各种状态的View
      */
-    protected void setStatusView(View view) {
+    protected void setStatusView(DefaultStatusView view) {
         mStatusContainer.setStatusView(view);
         mStatusContainer.setOnRetryListener(new View.OnClickListener() {
             @Override

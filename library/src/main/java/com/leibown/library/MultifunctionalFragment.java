@@ -51,7 +51,10 @@ public abstract class MultifunctionalFragment extends Fragment implements IStatu
         statusBar = containerView.findViewById(R.id.status_bar);
         statusBarWhenActionbarHide = containerView.findViewById(R.id.status_bar_when_actionbar_hide);
 
-        mStatusContainer = new StatusViewContainer(getContext());
+        mStatusContainer = initStatusViewContainer();
+        if (mStatusContainer == null)
+            mStatusContainer = new StatusViewContainer(getContext());
+
         LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
         containerView.addView(mStatusContainer.getView(), childParams);
 
@@ -99,6 +102,10 @@ public abstract class MultifunctionalFragment extends Fragment implements IStatu
         return containerView;
     }
 
+
+    protected StatusViewContainer initStatusViewContainer() {
+        return null;
+    }
 
     /**
      * 获取Activity布局文件Id
@@ -314,6 +321,22 @@ public abstract class MultifunctionalFragment extends Fragment implements IStatu
             }
         }
     }
+
+    /**
+     * 自定义Loading,ReTry,Empty这种状态时显示的View
+     *
+     * @param view 能装各种状态的View
+     */
+    protected void setStatusView(DefaultStatusView view) {
+        mStatusContainer.setStatusView(view);
+        mStatusContainer.setOnRetryListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reTry();
+            }
+        });
+    }
+
 
     @Override
     public StatusViewContainer getStatusViewContainer() {

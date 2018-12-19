@@ -3,8 +3,7 @@ package com.leibown.library.widget.status;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -22,38 +21,34 @@ public class StatusViewContainer {
     private static final int STATUS_ERROR = 2;
     private static final int STATUS_CONTENT = 3;
 
-    private View statusView;
+    private DefaultStatusView statusView;
     private View contentView;
 
     private int status = STATUS_LOADING;
 
-    private RelativeLayout container;
+    private FrameLayout container;
 
     public StatusViewContainer(Context context) {
-        container = new RelativeLayout(context);
+        container = new FrameLayout(context);
     }
+
 
     public void setContentView(View view) {
         if (contentView != null)
             container.removeView(contentView);
         contentView = view;
-        LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        FrameLayout.LayoutParams childParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         container.addView(view, childParams);
     }
 
-    public void setStatusView(View view) {
+    public void setStatusView(DefaultStatusView view) {
         if (statusView != null)
             container.removeView(statusView);
 
-        if (view instanceof StatusView) {
-            this.statusView = view;
-            LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            container.addView(view, childParams);
-        } else {
-            throw new IllegalArgumentException("plz implements StatusView witch you enter");
-        }
+        this.statusView = view;
+        addViews(view);
 
-        statusView.setOnClickListener(new View.OnClickListener() {
+        statusView.getClickableView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (status) {
@@ -70,13 +65,35 @@ public class StatusViewContainer {
         });
     }
 
+    private void addViews(View view) {
+        FrameLayout.LayoutParams childParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        container.addView(view, childParams);
+    }
 
+    /**
+     * 加入新的状态view(此方法可以加入除默认状态view以外的其他状态),新的状态view加入后默认隐藏
+     *
+     * @param views
+     */
+    public void addOtherStatusViews(View... views) {
+        for (int i = 0; i < views.length; i++) {
+            FrameLayout.LayoutParams childParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            views[i].setVisibility(View.GONE);
+            container.addView(views[i], childParams);
+        }
+    }
+
+
+    /**
+     * 获取默认状态view
+     * @return
+     */
     public StatusView getStatusView() {
         if (statusView == null) {
             throw new IllegalArgumentException("plz call setStatusView() before this method");
         }
 
-        return (StatusView) statusView;
+        return statusView;
     }
 
     public View getView() {
@@ -85,29 +102,29 @@ public class StatusViewContainer {
 
 
     public void showEmpty() {
+        hideAllViews();
         status = STATUS_EMPTY;
         statusView.setVisibility(View.VISIBLE);
-        ((StatusView) statusView).showEmpty();
-        contentView.setVisibility(View.GONE);
+        statusView.showEmpty();
     }
 
     public void showError() {
+        hideAllViews();
         status = STATUS_ERROR;
         statusView.setVisibility(View.VISIBLE);
-        ((StatusView) statusView).showError();
-        contentView.setVisibility(View.GONE);
+        statusView.showError();
     }
 
     public void showLoading() {
+        hideAllViews();
         status = STATUS_LOADING;
         statusView.setVisibility(View.VISIBLE);
-        ((StatusView) statusView).showLoading();
-        contentView.setVisibility(View.GONE);
+        statusView.showLoading();
     }
 
     public void showContent() {
+        hideAllViews();
         status = STATUS_CONTENT;
-        statusView.setVisibility(View.GONE);
         contentView.setVisibility(View.VISIBLE);
     }
 
@@ -120,6 +137,11 @@ public class StatusViewContainer {
         this.emptyListener = onClickListener;
     }
 
+    public void hideAllViews() {
+        for (int i = 0; i < container.getChildCount(); i++) {
+            container.getChildAt(i).setVisibility(View.GONE);
+        }
+    }
 
     public void setLoadingText(String loadingText) {
         getStatusView().setLoadingText(loadingText);
