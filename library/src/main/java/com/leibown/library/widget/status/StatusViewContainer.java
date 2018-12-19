@@ -137,6 +137,9 @@ public class StatusViewContainer {
         this.emptyListener = onClickListener;
     }
 
+    /**
+     * 隐藏所有子view（可以用于切换状态时，隐藏其他statusView）
+     */
     public void hideAllViews() {
         for (int i = 0; i < container.getChildCount(); i++) {
             container.getChildAt(i).setVisibility(View.GONE);
