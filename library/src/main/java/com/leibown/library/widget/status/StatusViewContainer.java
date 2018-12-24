@@ -26,14 +26,20 @@ public class StatusViewContainer {
 
     private int status = STATUS_LOADING;
 
-    protected FrameLayout container;
+    protected ViewGroup container;
+
     protected Context mContext;
 
     public StatusViewContainer(Context context) {
         mContext = context;
-        container = new FrameLayout(context);
+        container = setContainer();
+        if (container == null)
+            container = new FrameLayout(context);
     }
 
+    public ViewGroup setContainer() {
+        return null;
+    }
 
     public void setContentView(View view) {
         if (contentView != null)
