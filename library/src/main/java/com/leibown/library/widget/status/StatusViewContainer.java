@@ -113,7 +113,7 @@ public class StatusViewContainer {
      *
      * @param rootView
      */
-    public void setView(View rootView) {
+    public void setRootView(View rootView) {
         this.rootView = rootView;
     }
 
@@ -122,7 +122,7 @@ public class StatusViewContainer {
      *
      * @return
      */
-    public View getView() {
+    public View getRootView() {
         if (rootView != null)
             return rootView;
         return container;

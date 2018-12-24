@@ -56,7 +56,7 @@ public abstract class MultifunctionalFragment extends Fragment implements IStatu
             mStatusContainer = new StatusViewContainer(getContext());
 
         LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
-        containerView.addView(mStatusContainer.getView(), childParams);
+        containerView.addView(mStatusContainer.getRootView(), childParams);
 
         DefaultStatusView defaultStatusView = new DefaultStatusView(getContext());
         mStatusContainer.setStatusView(defaultStatusView);

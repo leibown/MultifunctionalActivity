@@ -56,7 +56,7 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
         if (mStatusContainer == null)
             mStatusContainer = new StatusViewContainer(this);
         LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
-        containerView.addView(mStatusContainer.getView(), childParams);
+        containerView.addView(mStatusContainer.getRootView(), childParams);
 
         DefaultStatusView defaultStatusView = new DefaultStatusView(this);
         mStatusContainer.setStatusView(defaultStatusView);
