@@ -218,14 +218,6 @@ public abstract class MultifunctionalFragment extends Fragment implements IStatu
         mStatusContainer.showContent();
     }
 
-    public void loadComplete() {
-
-    }
-
-    public void setNoMoreData() {
-
-    }
-
 
     private int PERMISSION_REQUEST_CODE = 2102;
     private PermissionListener mPermissionListener;

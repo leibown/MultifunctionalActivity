@@ -223,15 +223,6 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
         mStatusContainer.showContent();
     }
 
-    public void loadComplete() {
-
-    }
-
-    public void setNoMoreData() {
-
-    }
-
-
     private int PERMISSION_REQUEST_CODE = 2102;
     private PermissionListener mPermissionListener;
 
