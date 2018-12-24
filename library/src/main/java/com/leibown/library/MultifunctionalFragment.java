@@ -63,14 +63,6 @@ public abstract class MultifunctionalFragment extends Fragment implements IStatu
         mStatusContainer.setContentView(mContentView);
         mStatusContainer.showContent();
 
-        mStatusContainer.setOnRetryListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reTry();
-            }
-        });
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 View decorView = getActivity().getWindow().getDecorView();
@@ -196,11 +188,6 @@ public abstract class MultifunctionalFragment extends Fragment implements IStatu
         mStatusContainer.getStatusView().setErrorText(errorText);
     }
 
-    /**
-     * 重新请求网络数据，如果首次加载就出现加载失败，界面显示加载失败，在点击“加载失败，请重试”时执行的方法
-     */
-    public void reTry() {
-    }
 
 
     /**
@@ -329,12 +316,6 @@ public abstract class MultifunctionalFragment extends Fragment implements IStatu
      */
     protected void setStatusView(DefaultStatusView view) {
         mStatusContainer.setStatusView(view);
-        mStatusContainer.setOnRetryListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reTry();
-            }
-        });
     }
 
 
