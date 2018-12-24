@@ -21,12 +21,12 @@ public class StatusViewContainer {
     private static final int STATUS_ERROR = 2;
     private static final int STATUS_CONTENT = 3;
 
-    private DefaultStatusView statusView;
-    private View contentView;
+    protected DefaultStatusView statusView;
+    protected View contentView;
 
     private int status = STATUS_LOADING;
 
-    private FrameLayout container;
+    protected FrameLayout container;
 
     public StatusViewContainer(Context context) {
         container = new FrameLayout(context);
