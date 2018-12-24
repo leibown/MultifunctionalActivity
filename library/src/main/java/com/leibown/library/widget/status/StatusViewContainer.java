@@ -32,12 +32,12 @@ public class StatusViewContainer {
 
     public StatusViewContainer(Context context) {
         mContext = context;
-        container = setContainer();
+        container = initContainer();
         if (container == null)
             container = new FrameLayout(context);
     }
 
-    public ViewGroup setContainer() {
+    public ViewGroup initContainer() {
         return null;
     }
 
@@ -105,7 +105,26 @@ public class StatusViewContainer {
         return statusView;
     }
 
+    //RootView
+    private View rootView;
+
+    /**
+     * 设置根部view（用于当你设置了container,且container不是根部view时使用）
+     *
+     * @param rootView
+     */
+    private void setView(View rootView) {
+        this.rootView = rootView;
+    }
+
+    /**
+     * 获取根部view，当根部view为空时放回container
+     *
+     * @return
+     */
     public View getView() {
+        if (rootView != null)
+            return rootView;
         return container;
     }
 
