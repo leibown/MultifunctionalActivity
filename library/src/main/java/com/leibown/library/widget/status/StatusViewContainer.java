@@ -27,8 +27,10 @@ public class StatusViewContainer {
     private int status = STATUS_LOADING;
 
     protected FrameLayout container;
+    private Context mContext;
 
     public StatusViewContainer(Context context) {
+        mContext = context;
         container = new FrameLayout(context);
     }
 
@@ -86,6 +88,7 @@ public class StatusViewContainer {
 
     /**
      * 获取默认状态view
+     *
      * @return
      */
     public StatusView getStatusView() {
