@@ -27,7 +27,7 @@ public class StatusViewContainer {
     private int status = STATUS_LOADING;
 
     protected FrameLayout container;
-    private Context mContext;
+    protected Context mContext;
 
     public StatusViewContainer(Context context) {
         mContext = context;
