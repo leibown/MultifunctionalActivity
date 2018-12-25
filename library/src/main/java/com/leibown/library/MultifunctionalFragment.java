@@ -37,16 +37,15 @@ public abstract class MultifunctionalFragment extends Fragment implements IStatu
     private LinearLayout containerView;
     protected View statusBar;
     private View statusBarWhenActionbarHide;
-    private LayoutInflater mInflater;
+    private View mContentView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         containerView = (LinearLayout) inflater.inflate(R.layout.fragment_multifunctional, null);
-        mInflater = inflater;
         //用来填充Android版本在4.4以上的状态栏
         mLlTittleBar = containerView.findViewById(R.id.ll_tittle_bar);
-
+        mContentView = inflater.inflate(getResId(), null);
 
         statusBar = containerView.findViewById(R.id.status_bar);
         statusBarWhenActionbarHide = containerView.findViewById(R.id.status_bar_when_actionbar_hide);
@@ -81,7 +80,7 @@ public abstract class MultifunctionalFragment extends Fragment implements IStatu
     }
 
     private void initStatusContainer(StatusViewContainer statusViewContainer) {
-        View mContentView = mInflater.inflate(getResId(), null);
+
         if (mStatusContainer != null) {
             containerView.removeView(mStatusContainer.getRootView());
             ((ViewGroup) mStatusContainer.getRootView()).removeAllViews();

@@ -35,6 +35,7 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
     private View statusBar;
 
     private View statusBarWhenActionbarHide;
+    private View mContentView;
 
 
     @Override
@@ -45,6 +46,8 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
         LayoutInflater inflater = getLayoutInflater();
         containerView = (LinearLayout) inflater.inflate(R.layout.activity_multifunctional, null);
         setContentView(containerView);
+
+        mContentView = inflater.inflate(getResId(), null);
 
         //用来填充Android版本在4.4以上的状态栏
         statusBar = findViewById(R.id.status_bar);
@@ -83,8 +86,6 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
     }
 
     private void initStatusContainer(StatusViewContainer statusViewContainer) {
-        LayoutInflater inflater = getLayoutInflater();
-        View mContentView = inflater.inflate(getResId(), null);
         if (mStatusContainer != null) {
             containerView.removeView(mStatusContainer.getRootView());
             ((ViewGroup) mStatusContainer.getRootView()).removeAllViews();
