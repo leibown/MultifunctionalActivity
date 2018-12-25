@@ -49,7 +49,7 @@ public class StatusViewContainer {
         container.addView(view, childParams);
     }
 
-    public void setStatusView(DefaultStatusView view) {
+    public void setDefaultStatusView(DefaultStatusView view) {
         if (statusView != null)
             container.removeView(statusView);
 
@@ -99,7 +99,7 @@ public class StatusViewContainer {
      */
     public StatusView getStatusView() {
         if (statusView == null) {
-            throw new IllegalArgumentException("plz call setStatusView() before this method");
+            throw new IllegalArgumentException("plz call setDefaultStatusView() before this method");
         }
 
         return statusView;

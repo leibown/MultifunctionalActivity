@@ -48,23 +48,11 @@ public abstract class MultifunctionalLazyLoadFragment extends Fragment implement
         //用来填充Android版本在4.4以上的状态栏
         mLlTittleBar = containerView.findViewById(R.id.ll_tittle_bar);
 
-        View mContentView = inflater.inflate(getResId(), null);
 
         statusBar = containerView.findViewById(R.id.status_bar);
         statusBarWhenActionbarHide = containerView.findViewById(R.id.status_bar_when_actionbar_hide);
 
-        mStatusContainer = initStatusViewContainer();
-        if (mStatusContainer == null)
-            mStatusContainer = new StatusViewContainer(getContext());
-
-        LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
-        containerView.addView(mStatusContainer.getRootView(), childParams);
-
-        DefaultStatusView defaultStatusView = new DefaultStatusView(getContext());
-        mStatusContainer.setStatusView(defaultStatusView);
-        mStatusContainer.setContentView(mContentView);
-        mStatusContainer.showContent();
-
+        initStatusContainer(new StatusViewContainer(getContext()));
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -94,12 +82,34 @@ public abstract class MultifunctionalLazyLoadFragment extends Fragment implement
         return containerView;
     }
 
-    public View getContentView() {
-        return containerView;
+    private void initStatusContainer(StatusViewContainer statusViewContainer) {
+        View mContentView = getLayoutInflater().inflate(getResId(), null);
+        if (mStatusContainer != null) {
+            containerView.removeView(mStatusContainer.getRootView());
+            ((ViewGroup) mStatusContainer.getRootView()).removeAllViews();
+            mStatusContainer = null;
+        }
+
+        if (statusViewContainer == null)
+            mStatusContainer = new StatusViewContainer(getContext());
+        else
+            mStatusContainer = statusViewContainer;
+
+        LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+        containerView.addView(mStatusContainer.getRootView(), childParams);
+
+        DefaultStatusView defaultStatusView = new DefaultStatusView(getContext());
+        mStatusContainer.setDefaultStatusView(defaultStatusView);
+        mStatusContainer.setContentView(mContentView);
+        mStatusContainer.showContent();
     }
 
-    protected StatusViewContainer initStatusViewContainer() {
-        return null;
+    public void setStatusContainer(StatusViewContainer statusViewContainer) {
+        initStatusContainer(statusViewContainer);
+    }
+
+    public View getContentView() {
+        return containerView;
     }
 
     /**
@@ -490,7 +500,7 @@ public abstract class MultifunctionalLazyLoadFragment extends Fragment implement
      * @param view 能装各种状态的View
      */
     protected void setStatusView(DefaultStatusView view) {
-        mStatusContainer.setStatusView(view);
+        mStatusContainer.setDefaultStatusView(view);
     }
 
 

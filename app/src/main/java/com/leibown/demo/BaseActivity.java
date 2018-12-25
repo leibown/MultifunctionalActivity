@@ -27,7 +27,7 @@ public abstract class BaseActivity extends MultifunctionalActivity {
 
 //        View statusView = View.inflate(this, R.layout.layout_status, null);
 //        //设置各种状态时的View
-//        setStatusView(statusView);
+//        setDefaultStatusView(statusView);
 
 
         View view = View.inflate(this, R.layout.layout_actionbar, null);

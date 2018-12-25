@@ -51,17 +51,7 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
         statusBarWhenActionbarHide = findViewById(R.id.status_bar_when_actionbar_hide);
         mLlTittleBar = findViewById(R.id.ll_tittle_bar);
 
-        View mContentView = inflater.inflate(getResId(), null);
-        mStatusContainer = initStatusViewContainer();
-        if (mStatusContainer == null)
-            mStatusContainer = new StatusViewContainer(this);
-        LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
-        containerView.addView(mStatusContainer.getRootView(), childParams);
-
-        DefaultStatusView defaultStatusView = new DefaultStatusView(this);
-        mStatusContainer.setStatusView(defaultStatusView);
-        mStatusContainer.setContentView(mContentView);
-        mStatusContainer.showContent();
+        initStatusContainer(new StatusViewContainer(this));
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -92,9 +82,32 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
         bindViews(savedInstanceState);
     }
 
-    protected StatusViewContainer initStatusViewContainer() {
-        return null;
+    private void initStatusContainer(StatusViewContainer statusViewContainer) {
+        LayoutInflater inflater = getLayoutInflater();
+        View mContentView = inflater.inflate(getResId(), null);
+        if (mStatusContainer != null) {
+            containerView.removeView(mStatusContainer.getRootView());
+            ((ViewGroup) mStatusContainer.getRootView()).removeAllViews();
+            mStatusContainer = null;
+        }
+
+        if (statusViewContainer == null)
+            mStatusContainer = new StatusViewContainer(this);
+        else
+            mStatusContainer = statusViewContainer;
+
+        LinearLayout.LayoutParams childParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1);
+        containerView.addView(mStatusContainer.getRootView(), childParams);
+        DefaultStatusView defaultStatusView = new DefaultStatusView(this);
+        mStatusContainer.setDefaultStatusView(defaultStatusView);
+        mStatusContainer.setContentView(mContentView);
+        mStatusContainer.showContent();
     }
+
+    public void setStatusContainer(StatusViewContainer statusViewContainer) {
+        initStatusContainer(statusViewContainer);
+    }
+
 
     protected void onBaseCreate(Bundle savedInstanceState) {
 
@@ -314,7 +327,7 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
      * @param view 能装各种状态的View
      */
     protected void setStatusView(DefaultStatusView view) {
-        mStatusContainer.setStatusView(view);
+        mStatusContainer.setDefaultStatusView(view);
     }
 
     @Override

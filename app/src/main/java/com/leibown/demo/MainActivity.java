@@ -5,21 +5,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.leibown.library.peimission.PermissionListener;
-import com.leibown.library.widget.status.StatusViewContainer;
 
 public class MainActivity extends BaseActivity {
 
 
     private OtherStatusViewContainer otherStatusViewContainer;
 
-    @Override
-    protected StatusViewContainer initStatusViewContainer() {
-        otherStatusViewContainer = new OtherStatusViewContainer(this);
-        return otherStatusViewContainer;
-    }
 
     @Override
     public int getResId() {
@@ -30,6 +23,8 @@ public class MainActivity extends BaseActivity {
     public void bindViews(Bundle savedInstanceState) {
         super.bindViews(savedInstanceState);
 
+        otherStatusViewContainer = new OtherStatusViewContainer(this);
+        setStatusContainer(otherStatusViewContainer);
         //显示ActionBar
         showActionBar();
 //        hideActionBar();
@@ -47,11 +42,6 @@ public class MainActivity extends BaseActivity {
             }
         }, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.WRITE_CALENDAR);
 
-    }
-
-    @Override
-    public void reTry() {
-        Toast.makeText(this, "点击了重试", Toast.LENGTH_SHORT).show();
     }
 
     public void doClick(View view) {
