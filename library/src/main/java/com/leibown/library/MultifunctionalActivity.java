@@ -88,7 +88,7 @@ public abstract class MultifunctionalActivity extends AppCompatActivity implemen
     private void initStatusContainer(StatusViewContainer statusViewContainer) {
         if (mStatusContainer != null) {
             containerView.removeView(mStatusContainer.getRootView());
-            ((ViewGroup) mStatusContainer.getRootView()).removeAllViews();
+            mStatusContainer.removeAllViews();
             mStatusContainer = null;
         }
 

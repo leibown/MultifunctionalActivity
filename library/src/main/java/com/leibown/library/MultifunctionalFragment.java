@@ -83,7 +83,7 @@ public abstract class MultifunctionalFragment extends Fragment implements IStatu
 
         if (mStatusContainer != null) {
             containerView.removeView(mStatusContainer.getRootView());
-            ((ViewGroup) mStatusContainer.getRootView()).removeAllViews();
+            mStatusContainer.removeAllViews();
             mStatusContainer = null;
         }
 

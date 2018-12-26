@@ -87,7 +87,7 @@ public abstract class MultifunctionalLazyLoadFragment extends Fragment implement
     private void initStatusContainer(StatusViewContainer statusViewContainer) {
         if (mStatusContainer != null) {
             containerView.removeView(mStatusContainer.getRootView());
-            ((ViewGroup) mStatusContainer.getRootView()).removeAllViews();
+            mStatusContainer.removeAllViews();
             mStatusContainer = null;
         }
 
