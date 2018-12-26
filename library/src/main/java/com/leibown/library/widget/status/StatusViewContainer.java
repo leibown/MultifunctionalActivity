@@ -106,15 +106,22 @@ public class StatusViewContainer {
     }
 
     //RootView
-    private View rootView;
+    private ViewGroup rootView;
 
     /**
      * 设置根部view（用于当你设置了container,且container不是根部view时使用）
      *
      * @param rootView
      */
-    public void setRootView(View rootView) {
+    public void setRootView(ViewGroup rootView) {
         this.rootView = rootView;
+    }
+
+    public void removeAllViews() {
+        if (rootView != null)
+            rootView.removeAllViews();
+        if (container != null)
+            container.removeAllViews();
     }
 
     /**
